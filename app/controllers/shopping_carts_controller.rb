@@ -1,6 +1,8 @@
 class ShoppingCartsController < ApplicationController
   def add
-	Customer.find(session[:customer_id]).shopping_cart.cards << Card.find(params[:card_id])
+	customer = Customer.find(session[:customer_id])
+	customer.create_shopping_cart if customer.shopping_cart.nil?
+	customer.shopping_cart&.cards << Card.find(params[:card_id])
 	redirect_to shopping_cart_path
   end
 

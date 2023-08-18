@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get 'shopping_cart' => 'customers#index'
-  get 'signup' => 'customers#new'
+  root 'customers#new'
   post 'signup' => 'customers#create'
   resources :customers
   resources :cards
