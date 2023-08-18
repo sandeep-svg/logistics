@@ -1,0 +1,34 @@
+<div class="container">
+<div>	
+<% if session[:customer_id] %>
+<h2>All Products</h2>
+<% @cards.each do |card| %>
+  <div class="card-element">Name: <%= card.product_name %> </div>
+  <div class="card-element">Price: <%= card.price %> </div>
+  <div class="card-element">
+    <%= button_to "Add #{card.product_name} to cart",add_to_cart_path(card_id: card.id) %>
+  </div>
+<% end%>
+</div>
+
+<div>
+<% if @cards_in_cart.present?%>
+		<h2>products in your cart </h2>
+		<% a=@cards_in_cart.pluck(:id) %>
+		<% @cards_in_cart.uniq.each do |card| %>
+		  <p>Name: <%= card.product_name %> </p>
+		  <p>Price: <%= card.price %> </p>
+		  <p>Quantity: <%= a.count(card.id) %> </p>
+		  <p>
+		    <%= button_to "Remove #{card.product_name} from cart", remove_from_cart_path(card_id:card.id) %>
+		  </p>
+		<% end %>
+		<%= button_to "clear cart", clear_cart_path %>
+<% end %>
+</div>
+
+<%= link_to "Log out", logout_path, method: "delete" %>
+<%= link_to "create more cards",  new_card_path%>
+<% else %>
+<p>please login to continue <%= link_to "  login.", login_path %></p>
+<% end %>
