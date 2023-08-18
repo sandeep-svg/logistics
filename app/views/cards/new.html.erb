@@ -1,0 +1,19 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %> at <%= Time.now %></div>
+<% end %>
+
+<h2>Create new card</h2>
+<%=form_for(@card) do |f|%>
+ 
+ <%= f.label :product_name %><br/>
+ <%= f.text_field :product_name %><br/>
+
+ <%= f.label :price %><br/>
+ <%= f.text_field :price %><br/>
+
+ <%=f.submit 'create card',class:'btn btn-primary'%>
+<%end%>
+
+<h3>
+   <%= link_to "shopping cart page",  shopping_cart_path%>
+</h3>
