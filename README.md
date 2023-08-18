@@ -7,3 +7,4 @@ run **SET PASSWORD FOR 'root'@'localhost' = 'logistics_12#';**
 then rails db:create
 rails db:migrate:status
 rails db:migrate:up
+goto localhost:3000 and create account and login then create some cards add add them to cart
